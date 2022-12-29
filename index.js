@@ -9,7 +9,7 @@ import {registerValidation, loginValidation, postCreateValidation} from './valid
 
 import { handleValidationErrors, checkAuth } from './utils/index.js';
 
-import { UserController, PostController } from './controllers/index.js';
+import { UserController, PostController, CommentController } from './controllers/index.js';
 
 import User from './models/User.js';
 
@@ -53,6 +53,7 @@ app.post('/upload', checkAuth, upload.single('image'), (req, res) => {
  app.get('/posts/tags', PostController.getLastTags);
  app.get('/posts/:id', PostController.getOne);
  app.post('/posts', checkAuth, postCreateValidation, handleValidationErrors, PostController.create);
+ app.post('/posts/:id/comment', checkAuth, CommentController.addComment);
  app.delete('/posts/:id', checkAuth, PostController.remove);
  app.patch(
    '/posts/:id',

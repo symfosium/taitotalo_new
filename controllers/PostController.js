@@ -57,7 +57,6 @@ export const getLastTags = async (req, res) => {
              message: 'Artikkeli ei löydetty',
            });
          }
- 
          res.json(doc);
        },
      ).populate('user');
