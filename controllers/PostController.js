@@ -1,4 +1,5 @@
 import PostModel from '../models/Post.js';
+import CommentModel from '../models/Comment.js';
 
 export const getLastTags = async (req, res) => {
    try {
@@ -59,7 +60,8 @@ export const getLastTags = async (req, res) => {
          }
          res.json(doc);
        },
-     ).populate('user');
+     ).populate('comments')
+     .populate('user');
    } catch (err) {
      console.log(err);
      res.status(500).json({

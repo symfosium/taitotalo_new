@@ -5,11 +5,12 @@ import PostModel from '../models/Post.js'
 export const addComment = async (req, res) => {
    try {
      const postId = req.params.id;
-         const comment = new CommentModel();
-         comment.user = req.body.userId;   
-         comment.text = req.body.text;
-         comment.likesCount = 0;
+         const doc = new CommentModel();
+         doc.user = req.userId;   
+         doc.text = req.body.text;
+         doc.likesCount = 0;
  
+         const comment = await doc.save();
      PostModel.findOneAndUpdate(
        {
          _id: postId,

@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import axios from '../axios';
  
 import { Post } from '../components/Post';
-import { Index } from '../components/AddComment';
+import { AddComment } from '../components/AddComment';
 import { CommentsBlock } from '../components/CommentsBlock';
 
 
@@ -46,7 +46,8 @@ export const FullPost = () => {
           <ReactMarkdown children={data.text}/>
       </Post>
       <CommentsBlock
-        items={[
+        items={data.comments}
+        /*items={[
           {
             user: {
               fullName: "Anton Morozov",
@@ -61,10 +62,10 @@ export const FullPost = () => {
             },
             text: "When displaying three lines or more, the avatar is not aligned at the top. You should set the prop to align the avatar at the top",
           },
-        ]}
+        ]}*/
         isLoading={false}
       >
-        <Index />
+        <AddComment idPost={data._id}/>
       </CommentsBlock>
     </>
   );
