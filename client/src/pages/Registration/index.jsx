@@ -11,6 +11,7 @@ import {useForm} from 'react-hook-form';
 
 import styles from './Login.module.scss';
 import { fetchAuth, selectIsAuth, fetchRegister } from "../../redux/slices/auth";
+import axios from 'axios';
 
 export const Registration = () => {
   const isAuth = useSelector(selectIsAuth);
@@ -27,6 +28,9 @@ export const Registration = () => {
   });
 
   const onSubmit = async (values) => {
+    const resPic = await axios.get('https://picsum.photos/200');
+    console.log(resPic);
+    values.avatarUrl = resPic.request.responseURL;
     const data = await dispatch(fetchRegister(values));
  
     if (!data.payload) {

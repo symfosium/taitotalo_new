@@ -11,6 +11,11 @@ export const addComment = createAsyncThunk('posts/addComment', async (params) =>
   return data;
 });
 
+export const fetchComments = createAsyncThunk('posts/fetchComments', async () => {
+  const { data } = await axios.get('/posts/${params.idPost}/comments');
+  return data;
+});
+
 export const fetchTags = createAsyncThunk('posts/fetchTags', async () => {
   const { data } = await axios.get('/tags');
   return data;

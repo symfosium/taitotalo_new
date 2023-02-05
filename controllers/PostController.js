@@ -60,8 +60,7 @@ export const getLastTags = async (req, res) => {
          }
          res.json(doc);
        },
-     ).populate('comments')
-     .populate('user');
+     ).populate('user');
    } catch (err) {
      console.log(err);
      res.status(500).json({

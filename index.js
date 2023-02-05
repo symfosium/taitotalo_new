@@ -54,6 +54,7 @@ app.post('/upload', checkAuth, upload.single('image'), (req, res) => {
  app.get('/posts/:id', PostController.getOne);
  app.post('/posts', checkAuth, postCreateValidation, handleValidationErrors, PostController.create);
  app.post('/posts/:id/comment', checkAuth, CommentController.addComment);
+ app.get('/posts/:id/comments', CommentController.getAll);
  app.delete('/posts/:id', checkAuth, PostController.remove);
  app.patch(
    '/posts/:id',

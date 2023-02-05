@@ -17,8 +17,13 @@ export const FullPost = () => {
     axios
       .get(`/posts/${id}`)
       .then((res) => {
-        setData(res.data);
-        setLoading(false);
+        axios
+        .get(`/posts/${id}/comments`)
+        .then((res2) => {
+          res.data.comments = res2.data;
+          setData(res.data);
+          setLoading(false);
+        })
       })
     .catch((error) => {
       console.error(error.response.data);
